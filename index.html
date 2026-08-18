@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yellow Team Dashboard</title>
+  <title>White Team Dashboard</title>
   <style>
     * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
-      /* Yellow/Gold tinted background for the Yellow Team */
-      background-image: linear-gradient(rgba(180, 140, 0, 0.7), rgba(120, 90, 0, 0.9)), url('https://assets.nintendo.com/image/upload/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000069639/8248e2edec2e8c106a26cb174fd4ae108207cf21ffd6012704f60ef5540cb79c');
+      /* White/Silver tinted background for the White Team */
+      background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(220, 220, 220, 0.9)), url('https://assets.nintendo.com/image/upload/q_auto:best/f_auto/dpr_2.0/store/software/switch/70010000069639/8248e2edec2e8c106a26cb174fd4ae108207cf21ffd6012704f60ef5540cb79c');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -19,39 +19,39 @@
       min-height: 100vh;
       margin: 0;
       padding: 20px;
-      color: #fff;
+      color: #333;
     }
 
     .tracker-container {
       background-color: rgba(255, 255, 255, 0.95);
       padding: 30px;
       border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       width: 100%;
       max-width: 400px;
       color: #333;
       text-align: center;
     }
 
-    /* Using a darker gold/yellow for readability */
-    h2 { margin-top: 0; color: #d39e00; font-size: 26px; border-bottom: 3px solid #d39e00; padding-bottom: 10px; }
+    /* Using a dark grey/silver for readability instead of pure white */
+    h2 { margin-top: 0; color: #333; font-size: 26px; border-bottom: 3px solid #ccc; padding-bottom: 10px; }
     
     .balance-box {
-      background-color: #fffdf5;
-      border: 2px solid #d39e00;
+      background-color: #fafafa;
+      border: 2px solid #ccc;
       border-radius: 8px;
       padding: 15px;
       margin-bottom: 20px;
     }
     
-    .balance-amount { font-size: 32px; font-weight: bold; color: #d39e00; margin: 10px 0 0 0; }
+    .balance-amount { font-size: 32px; font-weight: bold; color: #333; margin: 10px 0 0 0; }
 
     form { display: flex; flex-direction: column; gap: 15px; }
     input, select, button { padding: 12px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc; width: 100%; }
     input[type="number"], select, input[type="password"] { background-color: #fdfdfd; }
     
-    button { background-color: #d39e00; color: white; border: none; cursor: pointer; font-weight: bold; }
-    button:hover { background-color: #b38600; }
+    button { background-color: #555; color: white; border: none; cursor: pointer; font-weight: bold; }
+    button:hover { background-color: #333; }
     
     #status { margin-top: 15px; font-weight: bold; }
 
@@ -68,7 +68,7 @@
   <!-- PIN LOGIN SCREEN -->
   <div class="tracker-container" id="loginScreen">
     <h2>Access Required</h2>
-    <p>Enter the Yellow Team PIN to access the dashboard.</p>
+    <p>Enter the White Team PIN to access the dashboard.</p>
     <input type="password" id="pinInput" placeholder="Enter PIN">
     <button onclick="checkPin()" style="margin-top: 15px;">Unlock</button>
     <p id="pinStatus" style="color: red; font-weight: bold;"></p>
@@ -76,7 +76,7 @@
 
   <!-- MAIN DASHBOARD SCREEN -->
   <div class="tracker-container" id="mainScreen">
-    <h2>Yellow Team Hub</h2>
+    <h2>White Team Hub</h2>
     
     <!-- Balance Display -->
     <div class="balance-box">
@@ -86,7 +86,7 @@
 
     <!-- Hidden teamColor input so the user doesn't have to select it -->
     <form id="leadForm">
-      <input type="hidden" name="teamColor" value="Yellow">
+      <input type="hidden" name="teamColor" value="White">
       <input type="number" name="amount" placeholder="Money Amount" step="1" min="1" required>
       <select name="action" required>
         <option value="" disabled selected>Select Action...</option>
@@ -100,7 +100,7 @@
 
   <script>
     // --- SECURITY SETTINGS ---
-    const CORRECT_PIN = "4565"; // SET A UNIQUE PIN FOR THE YELLOW TEAM HERE
+    const CORRECT_PIN = "4565"; // SET A UNIQUE PIN FOR THE WHITE TEAM HERE
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwZBAWDiAETsf4Aax0RRqpBaENOeNUgFhneX_duZtcVEECrgO9FhTu9yaaR3m5Hn1h_/exec'; 
 
     // --- PIN LOGIC ---
@@ -119,8 +119,8 @@
     function fetchCurrentBalance() {
       document.getElementById('displayBalance').innerText = "Loading...";
       
-      // Changed to "team=Yellow"
-      fetch(scriptURL + "?action=getBalance&team=Yellow")
+      // Changed to "team=White"
+      fetch(scriptURL + "?action=getBalance&team=White")
         .then(response => response.json())
         .then(data => {
           if (data.balance !== undefined) {
